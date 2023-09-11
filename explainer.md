@@ -2,8 +2,6 @@
 
 Authors: Anton Maliev, Ben Kelly, Helen Cho
 
-TODO: inline links, images
-
 # Introduction
 While browsers are actively working to remove support for third-party cookies, it is also clear that there will be unintended impacts to user experience on the web. Several proposals that intend to mitigate user-facing breakage are being discussed in web standards forums, but they may not be sufficient to avoid site breakage (in particular, those involving authentication flows). In some cases, the proposals currently address a limited scope of scenarios. In other cases, adoption of these proposals require more time and bandwidth than sites may have at their disposal. 
 
@@ -29,7 +27,7 @@ In this scenario, site B needs to be able to access its cookies on site A follow
 
 ![Use Case 1a](diagrams/use_case_1a.png)
 
-We have observed this flow on sites such as [nintendo.de](nintendo.de), which opens a popup to cross-site [accounts.nintendo.com](accounts.nintendo.com) to sign users in (see [description of use case](https://issuetracker.google.com/268390722)).
+We have observed this flow on sites such as [nintendo.de](https://nintendo.de), which opens a popup to cross-site [accounts.nintendo.com](https://accounts.nintendo.com) to sign users in (see [description of use case](https://issuetracker.google.com/268390722)).
 
 ## Use Case 1b: Popup with Past Interaction 
 Following a similar flow with a pop-up to site B triggered from site A, if the user has interacted recently with site B, such that site B has a valid login cookie, then the user may not need to go through the login flow again in the pop-up. User interaction in the pop-up is not strictly necessary for the 3p to authenticate the user.
@@ -38,7 +36,7 @@ If 3p cookie access has not already been granted from a prior pop-up flow or the
 
 ![Use Case 1b](diagrams/use_case_1b.png)
 
-We have observed this flow on sites such as [docs.google.com](docs.google.com), which offers a client-side encryption feature that can be managed by a third-party identity provider (see [description of use case](https://issuetracker.google.com/issues/274778613)).
+We have observed this flow on sites such as [docs.google.com](https://docs.google.com), which offers a client-side encryption feature that can be managed by a third-party identity provider (see [description of use case](https://issuetracker.google.com/issues/274778613)).
 
 ## Use Case 2: Redirect with Interaction
 A user visits site A, and is directed to sign in with an Identity Provider (IdP) on site B. They are then redirected back to site A. The IdP reads the auth cookie on site A, as a third-party, and provides the auth signal back to A.
@@ -47,7 +45,7 @@ In this scenario, site B needs access to 3p cookies on site A following the user
 
 ![Use Case 2](diagrams/use_case_2.png)
 
-We have observed this flow on sites such as [pixnet.net](pixnet.net) (see [description of use case](https://issuetracker.google.com/281701307)). 
+We have observed this flow on sites such as [pixnet.net](https://pixnet.net) (see [description of use case](https://issuetracker.google.com/281701307)). 
 
 # Examples of Heuristics in the Ecosystem
 Other browsers have shipped logic to handle certain scenarios, based on behaviors abstracted from the [Key Use Cases](#key-use-cases) described above. When a scenario is detected, the browser creates a cookie access grant between the third-party site and the relevant first-party site.
@@ -145,7 +143,7 @@ Experiment with variable storage access grant duration from 5 days to 60 days.
 3. Site B then redirects back to Site A (possibly through other origins).
 4. In this case, the first-party site is Site A and the third-party site is Site B.
 
-This adds the requirement that the user starts on Site A, which narrows the use cases from all single redirects to flows where the user passes through Site B while interacting mostly with Site A. This also adds the requirement that the user interaction happens during this redirect, not at any point within the last 30 days. These restrictions still include the [pixnet.net](pixnet.net) example observed in the [motivating issue](https://issuetracker.google.com/281701307), but limit the security risks.
+This adds the requirement that the user starts on Site A, which narrows the use cases from all single redirects to flows where the user passes through Site B while interacting mostly with Site A. This also adds the requirement that the user interaction happens during this redirect, not at any point within the last 30 days. These restrictions still include the [pixnet.net](https://pixnet.net) example observed in the [motivating issue](https://issuetracker.google.com/281701307), but limit the security risks.
 
 Due to the outlined privacy and security concerns, we currently do not propose solving for scenarios B and C, as these two scenarios both rely on prior interactions rather than current interactions, and thus are more vulnerable to both credentialed request attacks and user history leaks.
 
