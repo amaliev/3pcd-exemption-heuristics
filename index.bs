@@ -1,0 +1,72 @@
+<pre class="metadata">
+Title: Third Party Cookie Deprecation Exemption Heuristics
+Shortname: 3pcd-exemption-heuristics
+Repository: amaliev/3pcd-exemption-heuristics
+URL: https://github.com/amaliev/3pcd-exemption-heuristics/
+Editor: Anton Maliev, w3cid 148669, Google https://google.com/, amaliev@google.com
+Abstract: This specification defines third-party cookie deprecation heuristics, how browsers can detect them, and how browsers can grant storage access on detection.
+Status Text: This specification is intended to be migrated to the W3C standards track. It is not a W3C standard.
+Text Macro: LICENSE <a href=http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document>W3C Software and Document License</a>
+Group: privacycg
+Status: CG-DRAFT
+Level: None
+Complain About: accidental-2119 yes, missing-example-ids yes
+Markup Shorthands: markdown yes, css no
+Assume Explicit For: yes
+Metadata Order: !*, *, This version
+
+!Participate: <a href="https://github.com/[REPOSITORY]">Github Repository</a>
+!Participate: <a href="https://github.com/privacycg/meetings/">Privacy CG Meetings</a>
+</pre>
+<pre class="biblio">
+{
+    "MDN-STORAGE-ACCESS": {
+        "title": "Storage access policy: Block cookies from trackers"
+        "href": "https://developer.mozilla.org/en-US/docs/Web/Privacy/Storage_Access_Policy#automatic_storage_access_upon_interaction",
+    },
+    "WEBKIT-STORAGE-ACCESS": {
+        "title": "Intelligent Tracking Prevention 2.0",
+        "href": "https://webkit.org/blog/8311/intelligent-tracking-prevention-2-0/#:~:text=Temporary%20Compatibility%20Fix%3A%20Automatic%20Storage%20Access%20for%20Popups"
+    }
+}
+</pre>
+<pre class="anchors">
+spec: HTTP; urlPrefix: https://httpwg.org/specs/rfc7231.html#
+    type: dfn; text: HTTP 3xx statuses; url: status.3xx
+spec: tracking-dnt; urlPrefix: https://www.w3.org/TR/tracking-dnt/#
+    type: dfn; text: tracking; url: dfn-tracking
+spec: RFC6265; urlPrefix: https://tools.ietf.org/html/rfc6265/
+    type: dfn
+        text: cookie store; url: section-5.3
+        text: domain-match; url: section-5.1.3
+spec: RFC7234; urlPrefix: https://tools.ietf.org/html/rfc7234/
+    type: dfn
+        text: network cache; url: section-2
+</pre>
+
+<section class="non-normative">
+<h2 id="intro">Introduction</h2>
+
+<em>This section is non-normative.</em>
+
+
+
+Browsers are working to deprecate third-party cookies while avoiding user-facing
+breakage by removing support for common web patterns, particularly login flows via
+third-party identity providers. Browsers can observe [=Storage access heuristics=],
+from the user in order to provide short-term storage access to unbreak these flows.
+
+</section>
+
+<h2 id="infra">Infrastructure</h2>
+
+This specification depends on the Infra standard. [[!INFRA]]
+
+<h2 id="terminology">Terminology</h2>
+
+<dfn>Storage access heuristics</dfn> are specific, tightly scoped user flows that
+signal the user's intent to allow cross-site storage access.
+
+<div class="example" id="example-popup-heuristic">
+
+</div>
