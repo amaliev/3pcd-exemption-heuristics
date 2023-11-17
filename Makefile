@@ -20,9 +20,6 @@ clean:
 
 publish: build/spec.html
 
-update-explainer-toc: README.md Makefile
-	doctoc $< --title "## Table of Contents" > /dev/null
-
 build/spec.html: spec.bs Makefile
 	mkdir -p build
 	bikeshed --die-on=warning spec $< $@

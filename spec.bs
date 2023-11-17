@@ -63,7 +63,7 @@ Note: 15 minutes is a reasonable [=redirect heuristic grant duration=] value.
 <h3 id="sa-heuristics-grant">Storage Access Grant</h3>
 
 Define a [=powerful feature=] identified by the [=powerful feature/name=]
-"storage-access-heuristics", with the following [=permission key type=]:
+"storage-access-heuristics", with the following <var ignore>permission key type</var>:
 
 A [=permission key=] of the "storage-access-heuristics" feature is a [=tuple=] consisting
 of a [=host=] <dfn property>top-level</dfn> and a [=host=] <dfn property>requester</dfn>.
@@ -75,7 +75,7 @@ To <dfn>grant access for heuristics</dfn> given a [=host=] |host|, [=host=]
 
 1. Let |key| be a [=permission key=] with <var ignore>top-level</var> set to |firstPartyHost|
     and <var ignore>requester</var> set to |host|.
-1. Queue a task on the [=current settings object=]'s [=responsible event loop=] to:
+1. Queue a task on the [=current settings object=]'s <var ignore>responsible event loop</var> to:
     1. [=Set a permission store entry=] with:
         <dl>
             <dt><var ignore>descriptor</var></dt>
