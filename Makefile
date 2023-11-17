@@ -18,25 +18,25 @@ all: publish update-explainer-toc
 clean:
 	rm -rf build *~
 
-publish: build/index.html
+publish: build/spec.html
 
 update-explainer-toc: README.md Makefile
 	doctoc $< --title "## Table of Contents" > /dev/null
 
-build/index.html: index.bs Makefile
+build/spec.html: spec.bs Makefile
 	mkdir -p build
 	bikeshed --die-on=warning spec $< $@
 
-remote: index.bs
+remote: spec.bs
 	mkdir -p build
 	@ (HTTP_STATUS=$$(curl https://api.csswg.org/bikeshed/ \
-	                       --output build/index.html \
+	                       --output build/spec.html \
 	                       --write-out "%{http_code}" \
 	                       --header "Accept: text/plain, text/html" \
 	                       -F die-on=warning \
-	                       -F file=@index.bs) && \
+	                       -F file=@spec.bs) && \
 	[[ "$$HTTP_STATUS" -eq "200" ]]) || ( \
-		echo ""; cat build/index.html; echo ""; \
-		rm -f build/index.html; \
+		echo ""; cat build/spec.html; echo ""; \
+		rm -f build/spec.html; \
 		exit 22 \
 	);
