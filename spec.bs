@@ -5,7 +5,7 @@ Repository: amaliev/3pcd-exemption-heuristics
 URL: https://github.com/amaliev/3pcd-exemption-heuristics/
 Editor: Anton Maliev, w3cid 148669, Google https://google.com/, amaliev@google.com
 Abstract: This specification defines third-party cookie deprecation heuristics, how browsers can detect them, and how browsers can grant storage access on detection.
-Status Text: This specification is intended to be migrated. (Possibly to the web compat specification.)
+Status Text: This specification is intended to be migrated (possibly to the web compat specification).
 Text Macro: LICENSE <a href=http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document>W3C Software and Document License</a>
 Group: privacycg
 Status: CG-DRAFT
@@ -21,8 +21,8 @@ Metadata Order: !*, *, This version
 <pre class="biblio">
 {
     "MDN-STORAGE-ACCESS": {
-        "title": "Storage access policy: Block cookies from trackers"
-        "href": "https://developer.mozilla.org/en-US/docs/Web/Privacy/Storage_Access_Policy#automatic_storage_access_upon_interaction",
+        "title": "Storage access policy: Block cookies from trackers",
+        "href": "https://developer.mozilla.org/en-US/docs/Web/Privacy/Storage_Access_Policy#automatic_storage_access_upon_interaction"
     },
     "WEBKIT-STORAGE-ACCESS": {
         "title": "Intelligent Tracking Prevention 2.0",
@@ -31,10 +31,10 @@ Metadata Order: !*, *, This version
 }
 </pre>
 <pre class="anchors">
-spec: HTTP; urlPrefix: https://httpwg.org/specs/rfc7231.html#
+
 </pre>
 
-<h2 id="sa-heuristics-section">Alternatives</h2>
+<h2 id="sa-heuristics-alternatives">Alternatives</h2>
 
 Similar heuristics have been implemented by Firefox ([[MDN-STORAGE-ACCESS inline]])
 and Safari ([[WEBKIT-STORAGE-ACCESS inline]]).
@@ -63,7 +63,7 @@ Note: 15 minutes is a reasonable [=redirect heuristic grant duration=] value.
 <h3 id="sa-heuristics-grant">Storage Access Grant</h3>
 
 Define a [=powerful feature=] identified by the [=powerful feature/name=]
-"storage-access-heuristics", with the following <dfn>permission key type</dfn>:
+"storage-access-heuristics", with the following [=permission key type=]:
 
 A [=permission key=] of the "storage-access-heuristics" feature is a [=tuple=] consisting
 of a [=host=] <dfn property>top-level</dfn> and a [=host=] <dfn property>requester</dfn>.
@@ -77,14 +77,14 @@ To <dfn>grant access for heuristics</dfn> given a [=host=] |host|, [=host=]
     and <var ignore>requester</var> set to |host|.
 1. Queue a task on the [=current settings object=]'s [=responsible event loop=] to:
     1. [=Set a permission store entry=] with:
-      <dl>
-          <dt><var ignore>descriptor</var></dt>
-          <dd>"storage-access-heuristics"</dd>
-          <dt><var ignore>key</var></dt>
-          <dd>|key|</dd>
-          <dt><var ignore>current state</var></dt>
-          <dd>"granted"</dd>
-      </dl>
+        <dl>
+            <dt><var ignore>descriptor</var></dt>
+            <dd>"storage-access-heuristics"</dd>
+            <dt><var ignore>key</var></dt>
+            <dd>|key|</dd>
+            <dt><var ignore>current state</var></dt>
+            <dd>"granted"</dd>
+        </dl>
     2. Set the new permission's [=permission/lifetime=] to |duration|.
 
 <div class=note>
