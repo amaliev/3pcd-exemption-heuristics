@@ -115,6 +115,13 @@ This is a partial mitigation for the security concerns articulated above, as the
 
 For instance, consider evil.com attempting to obtain credentialed access to bank.com. It can unilaterally abuse Scenario B by opening a popup to an arbitrary domain on bank.com. Provided the user has accessed bank.com at any time in the last 30 days, this will satisfy Scenario B and grant a cookie access to bank.com when it is embedded on evil.com. Then when bank.com makes a credentialed request on evil.com, it exposes itself to attacks of the sort described in [Improving the Storage Access API security model](https://docs.google.com/document/d/1AsrETl-7XvnZNbG81Zy9BcZfKbqACQYBSrjM3VsIpjY/edit#heading=h.vb3ujl8dnk4q).
 
+### Initiating frame for popup heuristic
+The popup heuristic (Scenarios A and B) is valid for a popup initiated by any frame on the opener, including a third-party iframe. This matches the implementation in Firefox and Safari. However, it impacts the feature’s privacy and security risks. Allowing a third party iframe to open a same-domain popup that prompts for user interaction allows it to more easily grant itself cookie access on the first-party main frame. Meanwhile, allowing a different third-party to open the popup introduces a new attack vector for credentialed requests.
+
+Chrome has experimented with limiting this scope only to popups initiated by the opener main frame or first-party iframes; however, this resulted in internal breakage reports for common web patterns. One widespread example is the [Facebook comments plugin](https://developers.facebook.com/docs/plugins/comments/), which uses a facebook.com iframe to open a facebook.com sign-in popup, and creates an auth token cookie to be read by the opener.
+
+Chrome decided to align with the other browsers and turn on the popup heuristic for any popup regardless of the initiating frame, to ensure compatibility. However, we hope to revisit this decision down the line with the support of other browsers.
+
 ### User signals and preferences
 User agents should offer their users the possibility to opt out of these heuristics, noting the potential web breakage that could result from this decision. This could come in the form of differentiating between “default” protection against third-party cookies vs. full “third-party cookie blocking”, which disables heuristics and other web compatibility measures, as it is done in Firefox.
 
