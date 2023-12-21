@@ -154,6 +154,38 @@ This adds the requirement that the user starts on Site A, which narrows the use 
 
 Due to the outlined privacy and security concerns, we currently do not propose solving for scenarios B and C, as these two scenarios both rely on prior interactions rather than current interactions, and thus are more vulnerable to both credentialed request attacks and user history leaks.
 
+# Testing Instructions
+
+To test third-party cookie deprecation with heuristics enabled:
+1. Open Chrome M120+
+2. Enable the following flag to be in 3PCD mode under chrome://flags:
+   1. If using Chrome M120:
+      1. #tpc-phase-out-facilitated-testing (**Enabled Force Treatment**)
+   1. If using Chrome M121+:
+      1. #test-third-party-cookie-phaseout (**Enabled**)
+3. Enable the following flag to get heuristics treatment:
+   1. If using Chrome M120:
+      1. #tpcd-heuristics-grants (**Enabled Current Interaction with Backfill And Short Redirect**)
+   1. If using Chrome M121+:
+      1. #tpcd-heuristics-grants (**Enabled CurrentInteraction_ShortRedirect_AllFrameInitiator**)
+   1. Important Note: The “Enabled” arm is not the right arm!
+5. Verify that your setup is correct, and heuristics are working on the test site.
+   1. Open https://coop-reporting-chrome-86.glitch.me/pch/set-cookies to set the third-party cookies, followed by opening https://coop.xss.guru/pch/parent 
+   1. The following buttons should grant cookie access:
+      1. Open Popup (User Interaction)
+      2. Do Redirect Bounce (User Interaction)
+   1. After performing one of these flows, tap “Trigger a fetch to check for cookies”. A cookie with the Same-Site flag should appear in the list below. 
+6. Verify if cookies are being allowed on your site. (See developer documentation.)
+   1. Open your site and follow a flow which requires third-party cookie access.
+   1. Open DevTools (right-click, Inspect Element).
+   1. Navigate to the Network tab.
+   1. Click the entry that corresponds with the third-party embed in question.
+   1. Navigate to the Cookies sub-tab.
+   1. Check if the cookies are highlighted yellow (blocked) or not highlighted (not blocked).
+
+To turn off heuristics for testing other mitigations:
+1. #tpcd-heuristics-grants (**Disabled**)
+
 # Open Questions
 1. How often do Scenarios A, B, C and C2 occur on the web for the average user? 
     * How does not supporting Scenarios B and C impact the user-facing experience?
