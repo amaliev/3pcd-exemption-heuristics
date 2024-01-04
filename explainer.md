@@ -163,19 +163,13 @@ To test third-party cookie deprecation with heuristics enabled:
       1. #tpc-phase-out-facilitated-testing (**Enabled Force Treatment**)
    1. If using Chrome M121+:
       1. #test-third-party-cookie-phaseout (**Enabled**)
-3. Enable the following flag to get heuristics treatment:
-   1. If using Chrome M120:
-      1. #tpcd-heuristics-grants (**Enabled Current Interaction with Backfill And Short Redirect**)
-   1. If using Chrome M121+:
-      1. #tpcd-heuristics-grants (**Enabled CurrentInteraction_ShortRedirect_AllFrameInitiator**)
-   1. Important Note: The “Enabled” arm is not the right arm!
-5. Verify that your setup is correct, and heuristics are working on the test site.
+3. Verify that your setup is correct, and heuristics are working on the test site.
    1. Open https://coop-reporting-chrome-86.glitch.me/pch/set-cookies to set the third-party cookies, followed by opening https://coop.xss.guru/pch/parent 
    1. The following buttons should grant cookie access:
       1. Open Popup (User Interaction)
       2. Do Redirect Bounce (User Interaction)
    1. After performing one of these flows, tap “Trigger a fetch to check for cookies”. A cookie with the Same-Site flag should appear in the list below. 
-6. Verify if cookies are being allowed on your site. (See developer documentation.)
+4. Verify if cookies are being allowed on your site. (See developer documentation.)
    1. Open your site and follow a flow which requires third-party cookie access.
    1. Open DevTools (right-click, Inspect Element).
    1. Navigate to the Network tab.
