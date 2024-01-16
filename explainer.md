@@ -12,6 +12,7 @@ There are established practices in the ecosystem where temporary third-party coo
 *   Minimize user-facing breakage in a scaled manner by introducing a proactive solution that requires no incremental work from developers. Over time, encourage developers to adopt long-term APIs and reduce reliance on the heuristics. See more in [open questions](#open-questions).
 *   Prototype a solution that targets clear use cases in the ecosystem, which would be broken in a user-visible way due to the rollout of third-party cookie deprecation.
 *   Avoid a solution that is too lenient or able to be manipulated, such that a malicious third party can easily abuse the solution to track users across sites in a widespread manner or use heuristics to reveal new information about users.
+*   Minimize the scope and complexity of these heuristics, while achieving the goals above, to improve their maintainability and simplify cross-browser alignment.
 
 # Non-goals
 *   This proposal does not introduce a new API that site developers need to write to in order to enable cookie access. The purpose is to preserve existing behavior by providing exemptions automatically within the browser.
@@ -24,6 +25,8 @@ The following use cases describe user flows identified by browser vendors as req
 A user visits site A, which opens a login flow in a popup that is hosted on a different site B. The user interacts with the pop-up to authenticate, and the pop-up is closed to return focus to site A.
 
 In this scenario, site B needs to be able to access its cookies on site A following the user’s interaction with the popup window, to verify the authentication.
+
+(Note: for the purposes of this feature, a “popup” refers to a browsing context initiated by a user interaction on another browsing context, e.g. via window.open. Features that model the popup UX within the same browsing context, such as Bootstrap Modals, do not qualify.)
 
 ![Use Case 1a](diagrams/use_case_1a.png)
 
