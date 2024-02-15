@@ -186,7 +186,7 @@ To turn off heuristics for testing other mitigations:
        1. Turn on "Block all third-party cookies" in `chrome://settings/trackingProtection`
    2. To turn off *just* the heuristics mitigation:
        1. Launch Chrome with these command-line flags, as described in [these docs](https://developer.chrome.com/docs/web-platform/chrome-flags#command-line_flags):\
-          `--enable-features="TpcdHeuristicsGrants:TpcdReadHeuristicsGrants/false/TpcdWritePopupCurrentInteractionHeuristicsGrants/0d/TpcdWriteRedirectHeuristicGrants/15m"`
+          `--enable-features="TpcdHeuristicsGrants:TpcdReadHeuristicsGrants/false/TpcdWritePopupCurrentInteractionHeuristicsGrants/0d/TpcdWriteRedirectHeuristicGrants/0m"`
 
 To re-enable heuristics:\
 #tpcd-heuristics-grants (**Default**)\
