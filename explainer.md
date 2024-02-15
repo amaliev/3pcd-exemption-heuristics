@@ -181,8 +181,12 @@ To test third-party cookie deprecation with heuristics enabled:
    1. Navigate to the Cookies sub-tab.
    1. Check if the cookies are highlighted yellow (blocked) or not highlighted (not blocked).
 
-To turn off heuristics for testing other mitigations:\
-#tpcd-heuristics-grants (**Disabled**)
+To turn off heuristics for testing other mitigations:
+   1. To turn off all third-party cookie deprecation mitigations:
+       1. Turn on "Block all third-party cookies" in `chrome://settings/trackingProtection`
+   2. To turn off *just* the heuristics mitigation:
+       1. Launch Chrome with these command-line flags, as described in [these docs](https://developer.chrome.com/docs/web-platform/chrome-flags#command-line_flags):\
+          `--enable-features="TpcdHeuristicsGrants:TpcdReadHeuristicsGrants/true/TpcdWritePopupCurrentInteractionHeuristicsGrants/30d/TpcdBackfillPopupHeuristicsGrants/30d/TpcdPopupHeuristicEnableForIframeInitiator/all/TpcdWriteRedirectHeuristicGrants/15m/TpcdRedirectHeuristicRequireABAFlow/true/TpcdRedirectHeuristicRequireCurrentInteraction/true"`
 
 To re-enable heuristics:\
 #tpcd-heuristics-grants (**Default**)\
