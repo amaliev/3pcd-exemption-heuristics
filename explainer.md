@@ -183,6 +183,7 @@ To test third-party cookie deprecation with heuristics enabled:
 
 To turn off heuristics for testing other mitigations:
 1. #tpcd-heuristics-grants (**Disabled**)
+
 To re-enable heuristics:
 1. #tpcd-heuristics-grants (**Default**)
 
