@@ -181,11 +181,12 @@ To test third-party cookie deprecation with heuristics enabled:
    1. Navigate to the Cookies sub-tab.
    1. Check if the cookies are highlighted yellow (blocked) or not highlighted (not blocked).
 
-To turn off heuristics for testing other mitigations:
-1. #tpcd-heuristics-grants (**Disabled**)
+To turn off heuristics for testing other mitigations:\
+#tpcd-heuristics-grants (**Disabled**)
 
-To re-enable heuristics:
-1. #tpcd-heuristics-grants (**Default**)
+To re-enable heuristics:\
+#tpcd-heuristics-grants (**Default**)\
+Note: Setting the flag to **Enabled** will *not* enable heuristics!
 
 # Open Questions
 1. How often do Scenarios A, B, C and C2 occur on the web for the average user? 
